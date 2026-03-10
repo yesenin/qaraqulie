@@ -1,11 +1,12 @@
 import random
+import cairosvg
 
 def create_svg(width: int, height: int, lines: list) -> str:
     svg_lines = []
     svg_lines.append('<svg xmlns="http://www.w3.org/2000/svg"')
     svg_lines.append(f'\twidth="{width}mm" height="{height}mm"')
     svg_lines.append(f'\tviewBox="0 0 {width} {height}">')
-    svg_lines.append('<rect width="100%" height="100%" fill="pink"/>')
+    svg_lines.append('<rect width="100%" height="100%" fill="white"/>')
     for line in lines:
         svg_lines.append(line)
     svg_lines.append('</svg>')
@@ -103,4 +104,5 @@ if __name__ == '__main__':
     svg_content = create_svg(WIDTH_MM, HEIGHT_MM, [g_grid])
     with open('art.svg', 'w', encoding='utf-8') as f:
         f.write(svg_content)
+    cairosvg.svg2png(url="art.svg", write_to=f"art.png")
     print('Done.')
