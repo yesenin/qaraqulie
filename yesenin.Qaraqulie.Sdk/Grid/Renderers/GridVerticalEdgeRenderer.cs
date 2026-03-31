@@ -3,23 +3,22 @@ using yesenin.Qaraqulie.Library.Abstractions;
 
 namespace yesenin.Qaraqulie.Sdk.Grid.Renderers;
 
-public class GridEdgeRenderer : IGridRenderer
+public class GridVerticalEdgeRenderer : IGridRenderer
 {
     public DrawingGroup Render(Grid grid, GridSettings settings)
     {
         var g = new DrawingGroup("black", 0.5f);
-        // var leftToRight = true;
-        for (var r = 0; r < grid.Points.Count; r++)
+        for (var c = 0; c < settings.GridWidth; c++)
         {
-            if (r < grid.Points.Count - 1)
+            if (c < settings.GridWidth - 1)
             {
                 for (var p = 0; p < settings.Parts; p++)
                 {
                     var polyline = new Polyline(0.3f, "black");
-                    for (var c = 0; c < grid.Points[r].Length; c++)
+                    for (var r = 0; r < settings.GridHeight; r++)
                     {
-                        var stepY = (grid.Points[r + 1][c].Y - grid.Points[r][c].Y) / settings.Parts;
-                        var stepX = (grid.Points[r + 1][c].X - grid.Points[r][c].X) / settings.Parts;
+                        var stepY = (grid.Points[r][c + 1].Y - grid.Points[r][c].Y) / settings.Parts;
+                        var stepX = (grid.Points[r][c + 1].X - grid.Points[r][c].X) / settings.Parts;
                         polyline.AddPoint(new Point(
                             grid.Points[r][c].X + p * stepX, 
                             grid.Points[r][c].Y + p * stepY)
@@ -31,7 +30,7 @@ public class GridEdgeRenderer : IGridRenderer
             else
             {
                 var polyline = new Polyline(0.3f, "black");
-                for (var c = 0; c < grid.Points[r].Length; c++)
+                for (var r = 0; r < settings.GridHeight; r++)
                 {
                     polyline.AddPoint(grid.Points[r][c]);
                 }
@@ -39,6 +38,6 @@ public class GridEdgeRenderer : IGridRenderer
             }
         }
 
-        return g; // new Canvas(_ctx.Width, _ctx.Height).WithGroup(g).GetSvg();
+        return g;
     }
 }
