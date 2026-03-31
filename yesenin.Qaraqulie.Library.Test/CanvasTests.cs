@@ -30,7 +30,7 @@ public class CanvasTests
         svg.Should().Contain("width");
         svg.Should().Contain("height");
         svg.Should().Contain("viewBox");
-        svg.Should().Contain("<rect");
+        svg.Should().NotContain("<g");
         svg.Should().EndWith("</svg>\n");
     }
 

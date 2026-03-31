@@ -30,14 +30,7 @@ public class GridVerticalCurveRenderer : IGridRenderer
                     }
 
                     var path = new Path();
-                    path.AddLineTo(linePoints[0]);
-                    for (var i = 1; i < linePoints.Count - 1; i++)
-                    {
-                        var moveLeft = linePoints[i].MoveTo(linePoints[i - 1], 3);
-                        var moveRight = linePoints[i].MoveTo(linePoints[i + 1], 3);
-                        path.AddCurve(moveLeft, linePoints[i], moveRight);
-                    }
-                    path.AddLineTo(linePoints[^1]);
+                    GridCurvePathBuilder.AddSmoothPath(path, linePoints);
                     g.AddItem(path);
                 }
             }
@@ -49,14 +42,7 @@ public class GridVerticalCurveRenderer : IGridRenderer
                     linePoints.Add(grid.Points[r][c]);
                 }
                 var path = new Path();
-                path.AddLineTo(linePoints[0]);
-                for (var i = 1; i < linePoints.Count - 1; i++)
-                {
-                    var moveLeft = linePoints[i].MoveTo(linePoints[i - 1], 3);
-                    var moveRight = linePoints[i].MoveTo(linePoints[i + 1], 3);
-                    path.AddCurve(moveLeft, linePoints[i], moveRight);
-                }
-                path.AddLineTo(linePoints[^1]);
+                GridCurvePathBuilder.AddSmoothPath(path, linePoints);
                 g.AddItem(path);
             }
         }

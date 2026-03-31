@@ -23,7 +23,7 @@ public class ShakenVerticalGridEdged : IArt
         {
             GridWidth = 22,
             GridHeight = 12,
-            Parts = 15,
+            Parts = 12,
             ShakeIntensity = 7.0
         };
         
@@ -33,7 +33,7 @@ public class ShakenVerticalGridEdged : IArt
     
     public string GetSvg()
     {
-        var horizontalRenderer = new GridEdgeRenderer();
+        var horizontalRenderer = new GridCurveRenderer();
         var edgeRendered = new GridVerticalEdgeRenderer();
         var svg = new Canvas(_ctx)
             .WithGroup( edgeRendered.Render(_grid, _gridSettings))

@@ -21,6 +21,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\yesenin.Qaraqulie.Library\yesenin.Qaraqulie.Library.csproj" />
+      <ProjectReference Include="..\yesenin.Qaraqulie.Sdk\yesenin.Qaraqulie.Sdk.csproj" />
     </ItemGroup>
 
 </Project>

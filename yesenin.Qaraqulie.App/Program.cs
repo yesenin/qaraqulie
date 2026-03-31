@@ -7,7 +7,7 @@ using yesenin.Qaraqulie.App.Arts.Named;
 try
 {
     var bundle = new TaskBundle()
-        .AddTask(new TaskItem(new ShakenVerticalGridCurved(), "grid_v.svg"));
+        .AddTask(new TaskItem(new ShakenVerticalGridEdged(), "grid_v.svg"));
 
     bundle.Execute();
     
