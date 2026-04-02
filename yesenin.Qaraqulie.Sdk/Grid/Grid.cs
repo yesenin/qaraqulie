@@ -6,6 +6,7 @@ namespace yesenin.Qaraqulie.Sdk.Grid;
 public class Grid
 {
     public List<Point[]> Points { get; private set; } = [];
+    private readonly GridSettings _gridSettings;
     
     public Grid(CanvasSettings ctx, GridSettings gridSettings)
     {
@@ -23,6 +24,8 @@ public class Grid
             }
             Points.Add(rowPoints.ToArray());
         }
+        
+        _gridSettings = gridSettings;
     }
 
     public void Shake(double diff)
@@ -35,8 +38,13 @@ public class Grid
             var shakenRow = new List<Point>();
             for (var c = 0; c < Points[r].Length; c++)
             {
+                if (_gridSettings.FixedBorder && (c == 0 || c == Points[r].Length - 1 || r == 0 || r == Points.Count - 1))
+                {
+                    shakenRow.Add(new Point(Points[r][c].X, Points[r][c].Y));
+                    continue;
+                }
                 var currentDiff = diff;
-                if (r == 0 || r == Points.Count - 1)
+                if (c == 0 || c == Points[r].Length - 1)
                 {
                     currentDiff = smallDif;
                 }

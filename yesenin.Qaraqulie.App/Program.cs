@@ -4,10 +4,17 @@ using yesenin.Qaraqulie.App;
 using yesenin.Qaraqulie.App.Arts;
 using yesenin.Qaraqulie.App.Arts.Named;
 
+using System.Globalization;
+
+CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
+CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InvariantCulture;
+
+var outputPath = Environment.GetEnvironmentVariable("OUTPUT_PATH") ?? "";
+
 try
 {
     var bundle = new TaskBundle()
-        .AddTask(new TaskItem(new ShakenVerticalGridCurved(), "grid_v.svg"));
+        .AddTask(new TaskItem(new ShakenGridEdged(), Path.Combine(outputPath, $"art_{0}.svg")));
 
     bundle.Execute();
     
