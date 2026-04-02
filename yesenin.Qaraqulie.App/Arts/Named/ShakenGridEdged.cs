@@ -11,17 +11,19 @@ public class ShakenGridEdged : IArt
     private readonly CanvasSettings _ctx;
     private readonly GridSettings _gridSettings;
     
-    public ShakenGridEdged()
+    public ShakenGridEdged(string name)
     {
         _ctx = CanvasSettings.DefaultLandscapeA4Context();
         
         _gridSettings = new GridSettings
         {
-            GridWidth = 22,
-            GridHeight = 15,
+            Name = name,
+            Width = 22,
+            Height = 15,
             Parts = 12,
             ShakeIntensity = 7.0,
-            FixedBorder = false
+            FixedBorder = false,
+            SaveGrid = true
         };
         
         _grid = new Grid(_ctx, _gridSettings);

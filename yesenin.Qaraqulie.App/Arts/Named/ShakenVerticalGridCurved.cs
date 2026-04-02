@@ -11,7 +11,7 @@ public class ShakenVerticalGridCurved : IArt
     private readonly CanvasSettings _ctx;
     private readonly GridSettings _gridSettings;
     
-    public ShakenVerticalGridCurved()
+    public ShakenVerticalGridCurved(string name)
     {
         _ctx = CanvasSettings.DefaultLandscapeA4Context();
         _ctx.TopMargin += 20;
@@ -21,8 +21,9 @@ public class ShakenVerticalGridCurved : IArt
         
         _gridSettings = new GridSettings
         {
-            GridWidth = 22,
-            GridHeight = 12,
+            Name = name,
+            Width = 22,
+            Height = 12,
             Parts = 15,
             ShakeIntensity = 7.0
         };

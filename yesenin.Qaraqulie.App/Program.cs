@@ -13,8 +13,9 @@ var outputPath = Environment.GetEnvironmentVariable("OUTPUT_PATH") ?? "";
 
 try
 {
+    var gridName = $"art_{DateTime.Now:yyyyMMddHHmmss}";
     var bundle = new TaskBundle()
-        .AddTask(new TaskItem(new ShakenGridEdged(), Path.Combine(outputPath, $"art_{0}.svg")));
+        .AddTask(new TaskItem(new ShakenGridEdged(gridName), Path.Combine(outputPath, $"{gridName}.svg")));
 
     bundle.Execute();
     

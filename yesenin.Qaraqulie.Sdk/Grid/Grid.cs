@@ -1,3 +1,4 @@
+using System.Text.Json;
 using yesenin.Qaraqulie.Library;
 using yesenin.Qaraqulie.Library.Abstractions;
 
@@ -13,10 +14,10 @@ public class Grid
         var cellWidth = gridSettings.CellWidth(ctx.DrawingAreaWidth);
         var cellHeight = gridSettings.CellHeight(ctx.DrawingAreaHeight);
         
-        for (var yi = 0; yi < gridSettings.GridHeight; yi++)
+        for (var yi = 0; yi < gridSettings.Height; yi++)
         {
             var rowPoints = new List<Point>();
-            for (var xi = 0; xi < gridSettings.GridWidth; xi++)
+            for (var xi = 0; xi < gridSettings.Width; xi++)
             {
                 var newPointX = xi * cellWidth + ctx.LeftMargin;
                 var newPointY = yi * cellHeight + ctx.TopMargin;
@@ -50,9 +51,17 @@ public class Grid
                 }
                 var xShaken = Random.Shared.NextDouble() * 2 * currentDiff - currentDiff;
                 var yShaken = Random.Shared.NextDouble() * 2 * currentDiff - currentDiff;
-                shakenRow.Add(new Point(Points[r][c].X + xShaken, Points[r][c].Y + yShaken));
+                shakenRow.Add(new Point(
+                    Math.Round(Points[r][c].X + xShaken, 3), 
+                    Math.Round(Points[r][c].Y + yShaken, 3)));
             }
             result.Add(shakenRow.ToArray());
+        }
+
+        if (_gridSettings.SaveGrid)
+        {
+            var points = JsonSerializer.Serialize(result);
+            File.WriteAllText("grid.json", points);
         }
         
         Points = result;
