@@ -11,14 +11,15 @@ public class ShakenGridCurved : IArt
     private readonly CanvasSettings _ctx;
     private readonly GridSettings _gridSettings;
     
-    public ShakenGridCurved()
+    public ShakenGridCurved(string name)
     {
         _ctx = CanvasSettings.DefaultLandscapeA4Context();
         
         _gridSettings = new GridSettings
         {
-            GridWidth = 25,
-            GridHeight = 15,
+            Name = name,
+            Width = 25,
+            Height = 15,
             Parts = 12,
             ShakeIntensity = 7.0
         };

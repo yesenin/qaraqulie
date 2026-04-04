@@ -11,7 +11,6 @@ public class GridCurveRenderer : IGridRenderer
         var g = new DrawingGroup("black", 0.5f);
         for (var r = 0; r < grid.Points.Count; r++)
         {
-            
             if (r < grid.Points.Count - 1)
             {
                 

@@ -11,16 +11,19 @@ public class ShakenGridEdged : IArt
     private readonly CanvasSettings _ctx;
     private readonly GridSettings _gridSettings;
     
-    public ShakenGridEdged()
+    public ShakenGridEdged(string name)
     {
         _ctx = CanvasSettings.DefaultLandscapeA4Context();
         
         _gridSettings = new GridSettings
         {
-            GridWidth = 25,
-            GridHeight = 15,
+            Name = name,
+            Width = 22,
+            Height = 15,
             Parts = 12,
-            ShakeIntensity = 7.0
+            ShakeIntensity = 7.0,
+            FixedBorder = false,
+            SaveGrid = true
         };
         
         _grid = new Grid(_ctx, _gridSettings);
@@ -29,7 +32,7 @@ public class ShakenGridEdged : IArt
     
     public string GetSvg()
     {
-        var edgeRendered = new GridEdgeRenderer();
+        var edgeRendered = new GridCurveRenderer();
         var svg = new Canvas(_ctx).WithGroup( edgeRendered.Render(_grid, _gridSettings)).GetSvg();
         return svg;
     }
