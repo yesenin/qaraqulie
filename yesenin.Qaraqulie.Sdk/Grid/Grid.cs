@@ -66,4 +66,13 @@ public class Grid
         
         Points = result;
     }
+
+    public Grid()
+    {
+    }
+    
+    public void AddRow(Point[] row)
+    {
+        Points.Add(row);
+    }
 }

@@ -24,8 +24,10 @@ public class ShakenVerticalGridEdged : IArt
             Name = name,
             Width = 22,
             Height = 12,
-            Parts = 15,
-            ShakeIntensity = 7.0
+            Parts = 10,
+            ShakeIntensity = 7.0,
+            FixedBorder = true,
+            SaveGrid = false
         };
         
         _grid = new Grid(_ctx, _gridSettings);

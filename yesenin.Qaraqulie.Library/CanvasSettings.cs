@@ -1,3 +1,5 @@
+using yesenin.Qaraqulie.Library.Abstractions;
+
 namespace yesenin.Qaraqulie.Library;
 
 /// <summary>
@@ -5,16 +7,22 @@ namespace yesenin.Qaraqulie.Library;
 /// </summary>
 public class CanvasSettings
 {
-    public float Width { get; set; }
-    public float Height { get; set; }
-    public float LeftMargin { get; set; }
-    public float TopMargin { get; set; }
-    public float RightMargin { get; set; }
-    public float BottomMargin { get; set; }
+    public double Width { get; set; }
+    public double Height { get; set; }
+    public double LeftMargin { get; set; }
+    public double TopMargin { get; set; }
+    public double RightMargin { get; set; }
+    public double BottomMargin { get; set; }
     
-    public float DrawingAreaWidth => Width - LeftMargin - RightMargin;
-    public float DrawingAreaHeight => Height - TopMargin - BottomMargin;
-
+    public Point TopLeft => new Point(LeftMargin, TopMargin);
+    public Point BottomRight => new Point(Width - RightMargin, Height - BottomMargin);
+    public Point Center => new Point(Width / 2, Height / 2);
+    public Point TopRight => new Point(Width - RightMargin, TopMargin);
+    public Point BottomLeft => new Point(LeftMargin, Height - BottomMargin);
+    
+    public double DrawingAreaWidth => Width - LeftMargin - RightMargin;
+    public double DrawingAreaHeight => Height - TopMargin - BottomMargin;
+    
     public static CanvasSettings DefaultLandscapeA4Context()
     {
         return new CanvasSettings

@@ -1,0 +1,36 @@
+@{
+    ViewData["Title"] = "Art Page";
+}
+@model List<ArtFolder>
+
+<h1 class="display-4">Arts</h1>
+<div class="preview">
+    <div class="text-center">
+        <ul>
+            @foreach (var folder in @Model)
+            {
+                <li>@folder.Name</li>
+                <ul>
+                    @foreach (var file in folder.Files)
+                    {
+                        <li class="image-item art-item"
+                            data-path="../qaraqulie/@file">@file</li>
+                    }
+                </ul>
+            }
+        </ul>
+    </div>
+    <div>
+        <img id="preview" src="" alt="preview" />
+    </div>
+</div>
+<script>
+    const items = document.querySelectorAll('.art-item');
+    document.querySelectorAll('.image-item').forEach(x => {
+        x.addEventListener('click', function () {
+            items.forEach(i => i.classList.remove('selected'));
+            document.getElementById('preview').src = this.dataset.path;
+            this.classList.add('selected');
+        });
+    });
+</script>

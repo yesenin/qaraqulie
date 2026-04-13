@@ -13,13 +13,21 @@ var outputPath = Environment.GetEnvironmentVariable("OUTPUT_PATH") ?? "";
 
 try
 {
-    var gridName = $"art_{DateTime.Now:yyyyMMddHHmmss}";
+    var folderName = "ShakenGridCurved";
+    if (!Directory.Exists(Path.Combine(outputPath, folderName)))
+    {
+        Directory.CreateDirectory(Path.Combine(outputPath, folderName));
+    }
+    var artFolder = Path.Combine(outputPath, folderName);
+    var gridName = $"{DateTime.Now:yyyyMMddHHmmss}";
+    var fullPath = $"{Path.Combine(artFolder, gridName)}.svg";
     var bundle = new TaskBundle()
-        .AddTask(new TaskItem(new ShakenGridEdged(gridName), Path.Combine(outputPath, $"{gridName}.svg")));
+        .AddTask(new TaskItem(new ShakenGridCurved(
+            gridName, width: 15, height: 10, parts: 25, shakeIntensity: 10.0), fullPath));
 
     bundle.Execute();
     
-    Console.WriteLine("Success!");
+    Console.WriteLine($"Success! {fullPath}");
 }
 catch (Exception e)
 {

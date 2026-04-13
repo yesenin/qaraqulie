@@ -24,8 +24,8 @@ public class Art05 : IArt
             var lineA = new GraphLine(k1, 0, "red");
             var lineB = new GraphLine(k2, 50, "blue");
 
-            var point0 = new Circle(40, lineA.GetY(40));
-            var point1 = new Circle(60, lineB.GetY(60));
+            var point0 = new Dot(40, lineA.GetY(40));
+            var point1 = new Dot(60, lineB.GetY(60));
 
             var g = new DrawingGroup("red", 1f);
 

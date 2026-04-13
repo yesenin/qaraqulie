@@ -25,7 +25,9 @@ public class ShakenVerticalGridCurved : IArt
             Width = 22,
             Height = 12,
             Parts = 15,
-            ShakeIntensity = 7.0
+            ShakeIntensity = 7.0,
+            FixedBorder = true,
+            SaveGrid = false
         };
         
         _grid = new Grid(_ctx, _gridSettings);
@@ -38,7 +40,7 @@ public class ShakenVerticalGridCurved : IArt
         var edgeRendered = new GridVerticalCurveRenderer();
         var svg = new Canvas(_ctx)
             .WithGroup( edgeRendered.Render(_grid, _gridSettings))
-            .WithGroup( horizontalRenderer.Render(_grid, _gridSettings))
+            //.WithGroup( horizontalRenderer.Render(_grid, _gridSettings))
             .GetSvg();
         return svg;
     }

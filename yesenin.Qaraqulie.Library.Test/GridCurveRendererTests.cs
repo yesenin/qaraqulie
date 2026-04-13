@@ -17,10 +17,11 @@ public class GridCurveRendererTests
             new Point(30, 10));
         var settings = new GridSettings
         {
-            GridWidth = 4,
-            GridHeight = 2,
+            Width = 4,
+            Height = 2,
             Parts = 1,
-            ShakeIntensity = 0
+            ShakeIntensity = 0,
+            Name = "test"
         };
 
         var svg = new GridCurveRenderer().Render(grid, settings).GetSvg();
@@ -45,10 +46,11 @@ public class GridCurveRendererTests
             new Point(10, 30));
         var settings = new GridSettings
         {
-            GridWidth = 2,
-            GridHeight = 4,
+            Width = 2,
+            Height = 4,
             Parts = 1,
-            ShakeIntensity = 0
+            ShakeIntensity = 0,
+            Name = "test"
         };
 
         var svg = new GridVerticalCurveRenderer().Render(grid, settings).GetSvg();
@@ -67,10 +69,11 @@ public class GridCurveRendererTests
     {
         var grid = new Grid(DefaultContext(), new GridSettings
         {
-            GridWidth = points.Length,
-            GridHeight = 2,
+            Width = points.Length,
+            Height = 2,
             Parts = 1,
-            ShakeIntensity = 0
+            ShakeIntensity = 0,
+            Name = "test"
         });
 
         grid.Points.Clear();
@@ -82,10 +85,11 @@ public class GridCurveRendererTests
     {
         var grid = new Grid(DefaultContext(), new GridSettings
         {
-            GridWidth = 2,
-            GridHeight = points.Length,
+            Width = 2,
+            Height = points.Length,
             Parts = 1,
-            ShakeIntensity = 0
+            ShakeIntensity = 0,
+            Name = "test"
         });
 
         grid.Points.Clear();
